@@ -156,32 +156,19 @@ def opt(image_a, image_b, sf="sift", filter=None, meanfilter_time1=1, meanfilter
         return matchesimg, None
 
 if __name__ == '__main__': 
-    
-    #会自动处理data预览中的3对图片
-    for i in range(3):
-        image_a = cv2.imread('picture{}/1.png'.format(i+1))
-        image_b = cv2.imread('picture{}/2.png'.format(i+1))
-        sf,filter,meanfiler_time1,meanfiler_time2,ratiolimit = np.load('picture{}/parm.npy'.format(i+1),allow_pickle=True)
-        print(sf,filter,meanfiler_time1,meanfiler_time2,ratiolimit)
-        matchesimg, img = opt(image_a, image_b, sf, filter, int(meanfiler_time1),int(meanfiler_time2),float(ratiolimit))
-        #matchesimg, img = opt(image_a, image_b, "sift", "gray", 1, 1, 0.85)
 
-        plt.figure(3, dpi=200)
+    #使用opt函数处理其他图片
+    image_a = cv2.imread('xx/1.png')
+    image_b = cv2.imread('xx/2.png')
+    matchesimg, img = opt(image_a, image_b, "sift", "gray", 1,1,0.8)
+    plt.figure(3, dpi=200)
+    plt.axis("off")
+    plt.imshow(matchesimg)
+    plt.savefig("matches.png")
+    if img.any():
+        plt.figure(4, dpi=200)
+        plt.imshow(img)
         plt.axis("off")
-        plt.imshow(matchesimg)
-        plt.savefig("picture{}/matches.png".format(i+1))
-
-        if img.any():
-            plt.figure(4, dpi=200)
-            plt.imshow(img)
-            plt.axis("off")
-            plt.savefig("picture{}/result.png".format(i+1))
-
-        #plt.show()
-
-    # #使用opt函数处理其他图片
-    # image_a = cv2.imread('xx/1.png')
-    # image_b = cv2.imread('xx/2.png')
-    # matchesimg, img = opt(image_a, image_b, sf, filter, int(meanfiler_time1),int(meanfiler_time2),float(ratiolimit))
-    # #
+        plt.savefig("result.png")
+    plt.show()
     print("done")
