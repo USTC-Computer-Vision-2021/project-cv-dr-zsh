@@ -263,6 +263,10 @@ def orb_detect(image_a, image_b):#orb算法detect，效果较差
 ```
 ## 效果展示
 
+
+### 图片若无法正常显示请看data中的文件或者完全下载下来本地查看
+
+
 ### Picture 1 真实历史照片拼接示例
 使用的参数
 ```python
